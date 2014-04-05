@@ -1,6 +1,8 @@
 // Copyright 2014 William Lewis
 package com.netproteus.client;
 
+import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 import java.rmi.Naming;
 
 import org.apache.log4j.BasicConfigurator;
@@ -13,6 +15,7 @@ public class Client {
     private static final Logger log = Logger.getLogger(Client.class);
     
     public static void main(String[] args) {
+        updateDefaultCharset();
         
         BasicConfigurator.configure();
         
@@ -36,5 +39,18 @@ public class Client {
         }
         
     }
+    
+    private static void updateDefaultCharset() {
+        try {
+            System.setProperty("file.encoding", "UTF-8");
+            Class<Charset> c = Charset.class;
+            Field defaultCharsetField = c.getDeclaredField("defaultCharset");
+            defaultCharsetField.setAccessible(true);
+            defaultCharsetField.set(null, Charset.forName("UTF-8"));
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }       
     
 }

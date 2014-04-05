@@ -1,6 +1,8 @@
 // Copyright 2014 William Lewis
 package com.netproteus.server;
 
+import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 import java.rmi.RemoteException;
 
 import org.apache.log4j.BasicConfigurator;
@@ -27,6 +29,7 @@ public class Server extends AbstractRmiServer implements RemoteServer {
     }
     
     public static void main(String [] args) {
+        updateDefaultCharset();
         
         BasicConfigurator.configure();
         
@@ -35,9 +38,6 @@ public class Server extends AbstractRmiServer implements RemoteServer {
             System.setProperty("java.security.policy", "java.policy");
         }
         System.setProperty("java.rmi.server.useCodebaseOnly", "false");
-        
-        // set file encoding
-        System.setProperty("file.encoding", "UTF-8");
         
         try {
             // set security manager
@@ -54,5 +54,18 @@ public class Server extends AbstractRmiServer implements RemoteServer {
         }
     
     }
+    
+    private static void updateDefaultCharset() {
+        try {
+            System.setProperty("file.encoding", "UTF-8");
+            Class<Charset> c = Charset.class;
+            Field defaultCharsetField = c.getDeclaredField("defaultCharset");
+            defaultCharsetField.setAccessible(true);
+            defaultCharsetField.set(null, Charset.forName("UTF-8"));
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }      
     
 }
