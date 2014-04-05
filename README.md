@@ -16,10 +16,17 @@ Building
 Running Server
 --------------
 
-*./runServer.sh
+* ./runServer.sh
 
 
 Running Client
 --------------
 
-*./runClient.sh
+* ./runClient.sh
+
+
+Development
+-----------
+
+* mvn eclipse:eclipse
+* import as existing project
