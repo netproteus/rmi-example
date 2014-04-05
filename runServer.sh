@@ -1,10 +1,13 @@
 #!/bin/bash
 
-mvn clean install
-
 cd server
 
-mvn dependency:build-classpath -Dmdep.outputFile=target/cp
-java -cp $(cat target/cp):target/classes/ com.netproteus.Server
+if [ ! -f target/cp ]
+then
+    echo "Run build.sh first"
+    exit 1
+fi
+
+java -cp $(cat target/cp):target/classes/ com.netproteus.server.Server
 
 
