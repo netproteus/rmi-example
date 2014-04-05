@@ -4,7 +4,9 @@ package com.netproteus.rmi;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+import com.netproteus.data.RemoteMessage;
+
 public interface RemoteServer extends Remote { 
 
-    public String hello() throws RemoteException;
+    public RemoteMessage getMessage() throws RemoteException;
 }
