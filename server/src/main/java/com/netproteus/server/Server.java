@@ -37,6 +37,9 @@ public class Server extends AbstractRmiServer implements RemoteServer {
         if (System.getProperty("java.security.policy") == null) {
             System.setProperty("java.security.policy", "java.policy");
         }
+        
+        // http://docs.oracle.com/javase/7/docs/technotes/guides/rmi/enhancements-7.html
+        // Oracle call this an enhancement, it's completely stupid if you ask me
         System.setProperty("java.rmi.server.useCodebaseOnly", "false");
         
         try {

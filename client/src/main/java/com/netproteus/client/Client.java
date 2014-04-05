@@ -24,7 +24,9 @@ public class Client {
             System.setProperty("java.security.policy", "java.policy");
         }
         
-        System.setProperty("java.rmi.server.useCodebaseOnly", "false");
+        // http://docs.oracle.com/javase/7/docs/technotes/guides/rmi/enhancements-7.html
+        // Oracle call this an enhancement, it's completely stupid if you ask me
+        System.setProperty("java.rmi.server.useCodebaseOnly", "false");        
         
         try {
             // set security manager

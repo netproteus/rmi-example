@@ -14,6 +14,11 @@ import org.mortbay.jetty.security.SecurityHandler;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.ServletHolder;
 
+/**
+ * Basic embedded invocation of a jetty webserver that takes a single servlet to use to handle all requests
+ * 
+ * @author <a href="mailto:william@netproteus.net">william</a>
+ */
 public class BasicHttpServer extends Thread {
 
     private static final Logger log = Logger.getLogger(BasicHttpServer.class);
