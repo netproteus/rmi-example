@@ -1,6 +1,11 @@
 RMI Example
 ===========
 
+This is an example of how to implement an RMI Server and Client sharing only a common set of Integration interfaces. The server starts an RMIClassServer which serves up concreate Class implementations of the interfaces shared. The example binds into localhost and assumes you are running the client and server on the same host, but it is trival to update this to run accross a network.
+
+There are a couple of external dependencies to use Jetty as the base of the webserver but you could remove this and implement basic Http functionality from scratch if that was a problem.
+
+
 Requirements
 ------------
 
